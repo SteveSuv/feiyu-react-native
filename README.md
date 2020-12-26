@@ -1,1 +1,1 @@
-my react-native basic template with react-navigation and redux
+飞羽APP：使用react-native构建
