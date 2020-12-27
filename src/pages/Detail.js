@@ -11,7 +11,8 @@ import {
   ModalTitle,
   ScaleAnimation,
 } from 'react-native-modals';
-
+import components from '../components';
+const {MyHeader}=components
 
 export default ({state, dispatch}) => {
   const navigation = useNavigation();
@@ -19,16 +20,8 @@ export default ({state, dispatch}) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <View>
-      {/* header */}
-
-      {/* content */}
-      <Text
-        onPress={() => {
-          navigation.navigate('Home');
-        }}>
-        跳转Home
-      </Text>
+    <>
+      <MyHeader title="帖子详情"/>
 
       <View>
         <Button
@@ -81,6 +74,6 @@ export default ({state, dispatch}) => {
       </View>
 
       {/* comment */}
-    </View>
+    </>
   );
 };

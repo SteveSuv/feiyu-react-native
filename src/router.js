@@ -1,12 +1,19 @@
 import React from 'react';
 import {NavigationContainer, useIsFocused} from '@react-navigation/native';
-import pages from './pages';
 import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
 import {StatusBar} from 'react-native';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import pages from './pages';
+
+const Stack = createStackNavigator();
+const stacks = Object.keys(pages).map((name) => ({
+  name: name,
+  component: pages[name],
+  options: pages[name].options,
+}));
 
 const safe = (item) => {
   const FocusAwareStatusBar = (props) => {
@@ -31,23 +38,6 @@ const safe = (item) => {
 };
 
 export default () => {
-  const Stack = createStackNavigator();
-
-  const stacks = [
-    {
-      name: 'Home',
-      component: pages.HomeScreen,
-    },
-    {
-      name: 'Detail',
-      component: pages.DetailScreen,
-    },
-    {
-      name: 'Zone',
-      component: pages.ZoneScreen,
-    },
-  ];
-
   return (
     <SafeAreaProvider>
       <NavigationContainer>

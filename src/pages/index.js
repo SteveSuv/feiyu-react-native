@@ -1,18 +1,23 @@
-import HomeScreen from './HomeScreen';
-import DetailScreen from './DetailScreen';
-import ZoneScreen from './ZoneScreen';
-import redux from '../utils/redux';
+import reduxer from '../utils/reduxer';
 
-const Screens = {
-  HomeScreen,
-  DetailScreen,
-  ZoneScreen,
+import Home from './Home';
+import Detail from './Detail';
+import Zone from './Zone';
+import Search from './Search';
+import Edit from './Edit';
+
+
+const pages = {
+  Home,
+  Detail,
+  Zone,
+  Search,
+  Edit
 };
 
-const reduxScreens = {};
+const newPages = pages;
+    Object.keys(pages).forEach((name) => {
+      newPages[name] = reduxer(pages[name]);
+    });
 
-Object.keys(Screens).forEach((name) => {
-  reduxScreens[name] = redux(Screens[name]);
-});
-
-export default reduxScreens;
+export default newPages

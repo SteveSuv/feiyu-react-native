@@ -3,4 +3,5 @@ export default {
   showStatusBar: true,
   statusBarColor: '#fff',
   statusBarDark: true,
+  themeColor:'#0AA679'
 };
