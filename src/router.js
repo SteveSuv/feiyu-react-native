@@ -4,8 +4,7 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from '@react-navigation/stack';
-import {StatusBar} from 'react-native';
-import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
+import {StatusBar, View} from 'react-native';
 import pages from './pages';
 
 const Stack = createStackNavigator();
@@ -15,45 +14,50 @@ const stacks = Object.keys(pages).map((name) => ({
   options: pages[name].options,
 }));
 
-const safe = (item) => {
-  const FocusAwareStatusBar = (props) => {
-    const isFocused = useIsFocused();
-    return isFocused ? <StatusBar {...props} /> : null;
-  };
+const SafeStack = ({stack}) => {
+  // const FocusAwareStatusBar = (props) => {
+  //   const isFocused = useIsFocused();
+  //   return isFocused ? <StatusBar {...props} /> : null;
+  // };
 
-  return () => (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#fff',
-      }}>
-      <FocusAwareStatusBar
-        barStyle={`${item.options?.statusBarStyle || 'dark'}-content`}
-        backgroundColor={item.options?.statusBarColor || 'transparent'}
+  return (
+    <>
+      <StatusBar
+        barStyle={`${stack.options?.statusBarStyle || 'dark'}-content`}
+        backgroundColor={stack.options?.statusBarColor || 'transparent'}
         translucent={true}
       />
-      <item.component />
-    </SafeAreaView>
+      <View
+        style={{
+          height: StatusBar.currentHeight,
+          backgroundColor: 'transparent',
+        }}
+      />
+      <stack.component />
+    </>
   );
 };
 
 export default () => {
   return (
-    <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName={stacks[0].name} headerMode="none">
-          {stacks.map((item, index) => (
-            <Stack.Screen
-              options={{
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-              }}
-              key={index}
-              name={item.name}
-              component={safe(item)}
-            />
-          ))}
+          {stacks.map((item, index) => {
+            const safeStack = () => <SafeStack stack={item} />;
+            return (
+              <Stack.Screen
+                options={{
+                  cardStyleInterpolator:
+                    CardStyleInterpolators.forHorizontalIOS,
+                    cardStyle: {flex: 1, backgroundColor: '#fff'},
+                }}
+                key={index}
+                name={item.name}
+                component={safeStack}
+              />
+            );
+          })}
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaProvider>
   );
 };

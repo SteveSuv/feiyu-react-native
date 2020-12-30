@@ -15,7 +15,7 @@ export default ({state, dispatch}) => {
 
   const navigation = useNavigation();
   return (
-    <>
+    <View style={{flex:1,backgroundColor:'#fff'}}>
       <MyHeader
         title="发个帖子"
         right={
@@ -67,6 +67,6 @@ export default ({state, dispatch}) => {
           value={content}
         />
       </View>
-    </>
+    </View>
   );
 };

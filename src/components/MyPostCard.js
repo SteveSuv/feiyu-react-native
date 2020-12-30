@@ -5,13 +5,15 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
-  TouchableNativeFeedback,
+  TouchableHighlight,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {Avatar, Image} from 'react-native-elements';
 
-export default () => {
+export default ({state, dispatch}) => {
   const navigation = useNavigation();
+
+  const {themeColor} = state;
 
   const images = [
     {
@@ -29,14 +31,14 @@ export default () => {
   ];
 
   return (
-    <TouchableNativeFeedback
+    <TouchableHighlight
+      underlayColor="#ccc"
       onPress={() => {
         navigation.navigate('Detail');
       }}>
       <View
         style={{
-          paddingHorizontal: 16,
-          paddingVertical: 10,
+          padding: 15,
           backgroundColor: '#fff',
           borderBottomWidth: 0.2,
           borderBottomColor: '#eee',
@@ -47,7 +49,7 @@ export default () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: 8,
+            marginBottom: 10,
           }}>
           <View
             style={{
@@ -81,10 +83,10 @@ export default () => {
                   flexDirection: 'row',
                   alignItems: 'center',
                 }}>
-                <Text style={{fontSize: 12, color: '#777', marginRight: 5}}>
+                {/* <Text style={{fontSize: 12, color: '#777', marginRight: 5}}>
                   天津大学
-                </Text>
-                <Text style={{fontSize: 12, color: '#777'}}>21分钟前</Text>
+                </Text> */}
+                <Text style={{fontSize: 11, color: '#aaa'}}>21分钟前</Text>
               </View>
             </View>
           </View>
@@ -100,24 +102,25 @@ export default () => {
         </View>
 
         {/* 标题 */}
-        <View
+        {/* <View
           style={{
             marginBottom: 5,
           }}>
           <Text style={{fontSize: 17, fontWeight: 'bold'}}>
             听说你们在找《新欢渡旧爱》的Dj版？
           </Text>
-        </View>
+        </View> */}
 
         {/* 内容 */}
         <View
           style={{
-            marginBottom: 5,
+            marginBottom: 10,
           }}>
           <Text style={{fontSize: 15, color: '#333'}}>
             女人累了，男人陪！深夜的酒却能填满心，但是清晨的粥比深夜的酒好喝，骗你的人比爱你的人会说，
-            孙悟空的压力，八戒的身材，沙僧的发型，唐僧一样的絮絮叨叨，还离西天越来越近！😓
+            孙悟空的压力，八戒的身材，沙僧的发型，唐僧一样的絮絮叨叨，还离西天越来越近！😓...
           </Text>
+          {/* <Text style={{fontSize: 15, color: themeColor}}>展开</Text> */}
         </View>
 
         {/* 图片，gif，视频 */}
@@ -127,6 +130,8 @@ export default () => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+
+            overflow: 'hidden',
           }}>
           {images.map((item, index) => (
             <Image
@@ -149,46 +154,35 @@ export default () => {
         {/* 操作：点赞，分享，转发等 */}
         <View
           style={{
-            marginBottom: 10,
-            paddingLeft: '45%',
             flexDirection: 'row',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             alignItems: 'center',
           }}>
           <View>
             <TouchableOpacity onPress={() => {}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="thumbs-up" size={18} style={{color: '#000'}} />
-                <Text style={{color: '#777', paddingLeft: 5, fontSize: 12}}>
+                <Icon name="thumbs-up" size={15} style={{color: '#000'}} />
+                <Text style={{color: '#777', paddingLeft: 5, fontSize: 11}}>
                   1,556
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
 
-          <View>
-            <TouchableOpacity onPress={() => {}}>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="message-circle" size={18} style={{color: '#000'}} />
-                <Text style={{color: '#777', paddingLeft: 5, fontSize: 12}}>
-                  1,123
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <View style={{marginRight: 20}}></View>
 
           <View>
             <TouchableOpacity onPress={() => {}}>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                <Icon name="external-link" size={18} style={{color: '#000'}} />
-                <Text style={{color: '#777', paddingLeft: 5, fontSize: 12}}>
-                  323
+                <Icon name="message-circle" size={15} style={{color: '#000'}} />
+                <Text style={{color: '#777', paddingLeft: 5, fontSize: 11}}>
+                  1,123
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-    </TouchableNativeFeedback>
+    </TouchableHighlight>
   );
 };

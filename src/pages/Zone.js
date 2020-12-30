@@ -9,7 +9,7 @@ export default ({state, dispatch}) => {
   const navigation = useNavigation();
 
   return (
-    <>
+    <View style={{flex:1,backgroundColor:'#fff'}}>
       <MyHeader title="空间" />
 
       {/* profile,setting */}
@@ -17,6 +17,6 @@ export default ({state, dispatch}) => {
       {/* tabs */}
 
       {/* content */}
-    </>
+    </View>
   );
 };

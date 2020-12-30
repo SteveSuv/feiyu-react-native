@@ -7,10 +7,8 @@ export default ({state, dispatch}) => {
   
   const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
-  // const {themeColor}=state
+  const {themeColor}=state
 
-  // console.log(111,state);
-  const themeColor='#0AA679'
 
   return (
     <View

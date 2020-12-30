@@ -7,7 +7,7 @@ const {MySearchHeader}=components
 
 export default () => {
   return (
-    <View>
+    <View style={{flex:1,backgroundColor:'#fff'}}>
       <MySearchHeader />
     </View>
   );

@@ -19,12 +19,17 @@ export default () => {
       <View
         style={{
           flex: 4,
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
         }}>
-        <Text style={{fontSize: 16,marginRight:3}}>中国海洋大学</Text>
-        <Icon name="chevron-down-outline" size={20} />
+        <TouchableOpacity
+          onPress={() => {}}
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}>
+          <Text style={{fontSize: 17, marginRight: 3}}>中国海洋大学</Text>
+          <Icon name="chevron-down-outline" size={20} />
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -39,14 +44,14 @@ export default () => {
           }}>
           <Icon name="search-outline" size={25} />
         </TouchableOpacity>
-        <View style={{marginRight: 15}}></View>
+        <View style={{marginRight: 20}}></View>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Edit');
           }}>
           <Icon name="add-circle-outline" size={25} />
         </TouchableOpacity>
-        <View style={{marginRight: 15}}></View>
+        <View style={{marginRight: 20}}></View>
         <Avatar
           onPress={() => navigation.navigate('Zone')}
           size={25}

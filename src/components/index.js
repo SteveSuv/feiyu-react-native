@@ -6,7 +6,7 @@ import MyListView from './MyListView';
 import MyPostCard from './MyPostCard';
 import MySearchHeader from './MySearchHeader';
 import MyTabView from './MyTabView';
-
+import MyPostDetailCard from './MyPostDetailCard';
 
 const components = {
   MyHeader,
@@ -14,7 +14,8 @@ const components = {
   MyListView,
   MyPostCard,
   MySearchHeader,
-  MyTabView
+  MyTabView,
+  MyPostDetailCard,
 };
 
 const newComponents = components;

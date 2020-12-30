@@ -1,46 +1,51 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View, TouchableOpacity, Dimensions} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
+import {
+  TouchableOpacity,
+} from 'react-native-gesture-handler';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-const MyTabBar = (props) => {
-  const renderTabOption = (tab, i) => {
-    const isActive = props.activeTab == i;
-    return (
+const renderTabOption = (props, i) => {
+  const isActive = props.activeTab == i;
+  return (
+    <View key={i}  style={{
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderBottomWidth:1,
+      borderBottomColor: isActive ? '#000' : '#f8f8f8',
+    }}>
       <TouchableOpacity
-        key={i}
+      activeOpacity={1}
         onPress={() => props.goToPage(i)}
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderBottomWidth: 1,
-          borderBottomColor: isActive ? '#000' : '#fff',
-        }}>
+       >
         <Text
           style={{
-            fontSize: 17,
-            color: isActive ? '#000' : '#AAA',
+            fontSize:17,
+            color: isActive ? '#000' : '#aaa',
             fontWeight: isActive ? 'bold' : 'normal',
           }}>
           {props.tabNames[i]}
         </Text>
       </TouchableOpacity>
-    );
-  };
+    </View>
+  );
+};
 
+const MyTabBar = (props) => {
   return (
     <View
       style={{
         height: 40,
-        borderBottomColor: '#eee',
-        borderBottomWidth: 0.2,
+        // borderBottomColor: '#eee',
+        // borderBottomWidth: 0.2,
       }}>
       <View
         style={{
           flex: 1,
           flexDirection: 'row',
         }}>
-        {props.tabs.map((tab, i) => renderTabOption(tab, i))}
+        {props.tabs.map((tab, i) => renderTabOption(props, i))}
       </View>
     </View>
   );
@@ -48,16 +53,14 @@ const MyTabBar = (props) => {
 
 export default ({tabNames, tabComponents}) => {
   return (
-    <>
-      <ScrollableTabView
-        prerenderingSiblingsNumber={Infinity}
-        renderTabBar={() => <MyTabBar tabNames={tabNames} />}>
-        {tabComponents.map((item, index) => (
-          <View tablabel={index} key={index}>
-            {item}
-          </View>
-        ))}
-      </ScrollableTabView>
-    </>
+    <ScrollableTabView
+      prerenderingSiblingsNumber={Infinity}
+      renderTabBar={() => <MyTabBar tabNames={tabNames} />}>
+      {tabComponents.map((item, index) => (
+        <View style={{flex: 1}} key={index}>
+          {item}
+        </View>
+      ))}
+    </ScrollableTabView>
   );
 };
